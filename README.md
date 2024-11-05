@@ -1,3 +1,2 @@
 # calc.lateFee
-In this project, I did the calculation of the late fee
-I have used "if,else if ,and else " while I making this project
+It is simply an application for calculating penalty fees based on the number of days brought late.
