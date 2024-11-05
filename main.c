@@ -9,31 +9,29 @@ int main(void)
 {
 
 
-    // below are for the date that the user borrowed the book
+    // Below are for the date that the user borrowed the book
     int dueDay, dueMonth, dueYear;
-    // below are for the date that the user returned the book
+    // Below are for the date that the user returned the book
     int returnDay, returnMonth, returnYear;
-    // day difference between two dates
+    // Day difference between two dates
     int dayDifference;
-    // late fee will be returned to lateFee variable
+    // Late fee will be returned to lateFee variable
     double lateFee;
 
-    printf("enter due date DD MM YY: ");//Enter dates in the following format  12 12 2023
+    printf("enter due date DD MM YY: "); // Enter dates in the following format  12 12 2023
     scanf("%d%d%d", &dueDay, &dueMonth, &dueYear);
 
     printf("enter return date DD MM YY: ");//Enter dates in the following format 12 5 2023
     scanf("%d%d%d", &returnDay, &returnMonth, &returnYear);
 
-    // call the substractDays function
+    // Call the substractDays function
     dayDifference = substractDays(dueDay, dueMonth, dueYear, returnDay, returnMonth, returnYear);
-    // call the calculateLateFee function and get the lateFee
+    // Call the calculateLateFee function and get the lateFee
     lateFee = calculateLateFee(dayDifference);
-    // display the output
+    // Display the output
     printf("You are late %d days and your late fee is %.3lf.", dayDifference, lateFee);
     return 0;
 }
-
-// NOW, IMPLEMENT THE FUNCTION
 
 /*
     substractDays function accepts six parameters:
@@ -62,63 +60,60 @@ int main(void)
 */
 int substractDays(int dueDay, int dueMonth, int dueYear, int returnDay, int returnMonth, int returnYear)
 {
-int dayDifference;
-int mounthDifference;
+int dayDifference; 
+int mounthDifference; 
 int yearDifference;
 int sumOfDays;
-dayDifference=returnDay-dueDay;
-mounthDifference=returnMonth-dueMonth;
-yearDifference=returnYear-dueYear;
-sumOfDays=dayDifference +mounthDifference*30 +yearDifference*360;
+dayDifference = returnDay - dueDay;
+mounthDifference = returnMonth - dueMonth;
+yearDifference  =returnYear - dueYear;
+sumOfDays = dayDifference + mounthDifference * 30 + yearDifference * 360;
 
-if(sumOfDays>0)
+if(sumOfDays > 0) 
 {
      return sumOfDays;
 
 }
-else
+else // sumOfDays is must be greater than zero
 {
     return 0;
 }
 
 }
 
-
-// NOW, IMPLEMENT THE FUNCTION
 /*
     calculateLateFee function accepte a single paremeter and calculates
     the relevant lateFee with the folloing late fee policy.
 
-    if a book is returned less than or equal to 5 days, the late is 10 liras for each day.
-    if a book is returned more than 6 days but within 15 days (15 is included in the range),
-    the late fee is 10 liras per day for the first 5 days and 15 liras per day for the remaining days.
-    if a book is returned more than 16 days but within 30 days (30 is included in the range),
-    the late fee is 15 liras per day for the first 15 days (including)and 20 liras per day for the remaining days.
-    if a book is returned more than 30 days, the late is 20 liras for each day with no exception.
+    If a book is returned less than or equal to 5 days, the late is 10 liras for each day.
+    If a book is returned more than 6 days but within 15 days (15 is included in the range),
+     the late fee is 10 liras per day for the first 5 days and 15 liras per day for the remaining days.
+    If a book is returned more than 16 days but within 30 days (30 is included in the range),
+     the late fee is 15 liras per day for the first 15 days (including)and 20 liras per day for the remaining days.
+    If a book is returned more than 30 days, the late is 20 liras for each day with no exception.
 
     IMPORTANT NOTE:
     daysLate parameter cannot be less than 0. if it is 0, It means that the book returned on time.
 */
 
-double calculateLateFee(int dayslate)
+double calculateLateFee (int dayslate)
 {
 int lateFee;
-if(dayslate<=5)
+if(dayslate <= 5) // If late days is equal to 5 or less
 {
-    lateFee=dayslate*10;
+    lateFee = dayslate * 10;
 }
-else if (dayslate>5 && dayslate<=15)
+else if (dayslate > 5 && dayslate <= 15) // If greater than 5 is equal to less than 15, then
 {
-    lateFee=5*10 + (dayslate-5)*15;
+    lateFee = 5 * 10 + (dayslate-5) * 15; 
 }
-else if (dayslate>16 && dayslate<=30)
+else if (dayslate > 16 && dayslate <= 30) // If greater than 16 is equal to less than 30, then
 {
-    lateFee=15*15 + (dayslate-15)*20;
+    lateFee = 15 * 15 + (dayslate-15) * 20;
 }
-else
+else // If it is gretaer than 31
 {
-   lateFee=dayslate*20;
+   lateFee = dayslate * 20;
 }
 return lateFee;
-
 }
